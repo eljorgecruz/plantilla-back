@@ -1,4 +1,8 @@
 <?php
+include_once 'api/conexion.php';
+include_once 'librerias/router.php';
+include_once 'librerias/responseRequest.php';
+
 $allowedOrigins = [
 
   'http://localhost:3000',
@@ -46,40 +50,40 @@ $Router->get('/conection/db', function ($req) {
 });
 
 /* # Ejemplo acceder api 
-  http://localhost/api/v1/test 
+  http://localhost:2000/index.php/v1/test
 */
 $Router->get('/test', function () {
-  responseRequest(200, 'succces', true, []);
+  responseRequest(false, 'succces', true, 200, []);
 });
 
 /* # Ejemplo GET con parametros
-  http://localhost/api/v1/test/1/otroTest 
+  http://localhost:2000/index.php/v1/test/1/otroTest 
 */
 $Router->get('/test/:id_test/otroTest', function ($req) {
-  responseRequest(200, 'succces', true, ["params" => $req->params]);
+  responseRequest(false, 'succces', true, 200,["params" => $req->params]);
 });
 
 /* 
   # Ejemplo GET con dos parametros
-  http://localhost/api/v1/test/1/2/test 
+  http://localhost:2000/index.php/v1/test/1/2/test 
 */
 $Router->get('/test/:id_test/:id_extra_params/test', function ($req) {
-  responseRequest(200, 'succces', true, ["params" => $req->params]);
+  responseRequest(false, 'succces', true, 200,["params" => $req->params]);
 });
 
 /* # Ejemplo POST 
-  http://localhost/api/v1/test 
+  http://localhost:2000/index.php/v1/test 
 */
 $Router->post('/test', function ($req) {
-  responseRequest(200, 'succces', true, ["Body" => $req->body]);
+  responseRequest(false, 'succces', true, 200,["Body" => $req->body]);
 });
 
 
 /* # Ejemplo PUT 
-  http://localhost/api/v1/test 
+  http://localhost:2000/index.php/v1/test 
 */
 $Router->put('/test', function ($req) {
-  responseRequest(200, 'succces', true, ["Body" => $req->body]);
+  responseRequest(false, 'succces', true, 200,["Body" => $req->body]);
 });
 
 
@@ -88,10 +92,10 @@ $Router->setRouteVersion('v2');
 
 
 /* # Ejemplo acceder api 
-  http://localhost/api/v2/test 
+  http://localhost:2000/index.php/v2/test 
 */
 $Router->post('/test', function ($req) {
-  responseRequest(200, 'succces', true, ["Body" => $req->body]);
+  responseRequest(false, 'succces', true, 200,["Body" => $req->body]);
 });
 
 $Router->dafault(function () {
